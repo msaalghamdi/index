@@ -1,573 +1,511 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نموذج التفتيش - علاقة العمل</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .section {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            border-right: 4px solid #3498db;
-        }
-        .section-title {
-            font-weight: bold;
-            color: #2980b9;
-            margin-bottom: 10px;
-        }
-        .criteria-row {
-            display: flex;
-            margin-bottom: 10px;
-            padding: 8px;
-            background-color: white;
-            border-radius: 4px;
-            align-items: center;
-        }
-        .criteria-name {
-            flex: 3;
-            font-weight: bold;
-        }
-        .criteria-weight {
-            flex: 1;
-            text-align: center;
-        }
-        .criteria-opinion {
-            flex: 2;
-        }
-        .criteria-notes {
-            flex: 3;
-        }
-        select, input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 100%;
-        }
-        .info-row {
-            display: flex;
-            margin-bottom: 15px;
-        }
-        .info-item {
-            flex: 1;
-            margin-left: 10px;
-        }
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        .total {
-            font-weight: bold;
-            text-align: center;
-            font-size: 18px;
-            margin: 20px 0;
-        }
-        .note {
-            font-style: italic;
-            color: #7f8c8d;
-            margin: 10px 0;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>جدول المعايير والأوزان الاسترشادية الموحد</h1>
-        
-        <div class="info-row">
-            <div class="info-item">
-                <label>رقم السجل التجاري</label>
-                <input type="text" id="commercial-registry">
-            </div>
-            <div class="info-item">
-                <label>رقم المنشأة</label>
-                <input type="text" id="establishment-number">
-            </div>
-        </div>
-        
-        <div class="info-row">
-            <div class="info-item">
-                <label>رقم هوية العامل</label>
-                <input type="text" id="worker-id">
-            </div>
-            <div class="info-item">
-                <label>اسم العامل</label>
-                <input type="text" id="worker-name">
-            </div>
-        </div>
-        
-        <div class="section">
-            <div class="section-title">عناصر صحة علاقة العمل - محور العمل والتبعية</div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">عقد العمل</div>
-                <div class="criteria-weight">10</div>
-                <div class="criteria-opinion">
-                    <select id="criteria1">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes1" placeholder="ملاحظات">
-                </div>
-            </div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">تسجيل المشترك/هـ كمسؤول أو مشرف في احد أنظمة الجهات الحكومية</div>
-                <div class="criteria-weight">20</div>
-                <div class="criteria-opinion">
-                    <select id="criteria2">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes2" placeholder="ملاحظات">
-                </div>
-            </div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">تأمين طبي سابق لتاريخ التفتيش</div>
-                <div class="criteria-weight">15</div>
-                <div class="criteria-opinion">
-                    <select id="criteria3">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes3" placeholder="ملاحظات">
-                </div>
-            </div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">التحقق من صحة علاقة العمل عن طريق سؤال المشترك أو بقية المشتركين</div>
-                <div class="criteria-weight">15</div>
-                <div class="criteria-opinion">
-                    <select id="criteria4">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes4" placeholder="ملاحظات">
-                </div>
-            </div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">مستندات لبعض أعمال المشترك/هـ خاصة بالفترة المطلوبة</div>
-                <div class="criteria-weight">10</div>
-                <div class="criteria-opinion">
-                    <select id="criteria5">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes5" placeholder="ملاحظات">
-                </div>
-            </div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">القرارات الإدارية للمشترك</div>
-                <div class="criteria-weight">5</div>
-                <div class="criteria-opinion">
-                    <select id="criteria6">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes6" placeholder="ملاحظات">
-                </div>
-            </div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">إقرار المشترك بعدم العمل</div>
-                <div class="criteria-weight">-30</div>
-                <div class="criteria-opinion">
-                    <select id="criteria7">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes7" placeholder="ملاحظات">
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <div class="section-title">عناصر صحة علاقة العمل - محور الأجر</div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">الأجر من خلال برنامج حماية الأجور ويشمل التحويلات البنكية</div>
-                <div class="criteria-weight">20</div>
-                <div class="criteria-opinion">
-                    <select id="criteria8">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes8" placeholder="ملاحظات">
-                </div>
-            </div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">مسيرات رواتب او سندات صرف (في حال عدم وجود حوالات بنكية)</div>
-                <div class="criteria-weight">5</div>
-                <div class="criteria-opinion">
-                    <select id="criteria9">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes9" placeholder="ملاحظات">
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <div class="section-title">رأي المفتش</div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">توافق المعلومات التي اطلع عليها المفتش</div>
-                <div class="criteria-weight">5</div>
-                <div class="criteria-opinion">
-                    <select id="criteria10">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes10" placeholder="ملاحظات">
-                </div>
-            </div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">تواجد المشترك/ة</div>
-                <div class="criteria-weight">5</div>
-                <div class="criteria-opinion">
-                    <select id="criteria11">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes11" placeholder="ملاحظات">
-                </div>
-            </div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">العلاقة الشخصية بين المشترك وصاحب العمل</div>
-                <div class="criteria-weight">5</div>
-                <div class="criteria-opinion">
-                    <select id="criteria12">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes12" placeholder="ملاحظات">
-                </div>
-            </div>
-            
-            <div class="criteria-row">
-                <div class="criteria-name">موثوقية المستندات</div>
-                <div class="criteria-weight">5</div>
-                <div class="criteria-opinion">
-                    <select id="criteria13">
-                        <option value="">الرجاء الإختيار</option>
-                        <option value="تم التحقق">تم التحقق</option>
-                        <option value="لم يتم التحقق">لم يتم التحقق</option>
-                    </select>
-                </div>
-                <div class="criteria-notes">
-                    <input type="text" id="notes13" placeholder="ملاحظات">
-                </div>
-            </div>
-        </div>
-        
-        <div class="total">المجموع: <span id="total-score">0</span></div>
-        
-        <div class="note">يتم اعتبار علاقة العمل صحيحة (40 درجة) فأكثر بشرط توفر عنصر بكل محور من المحاور الثلاثة</div>
-        
-        <button onclick="generateExcel()">توليد ملف Excel</button>
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script>
-        function calculateTotal() {
-            let total = 0;
-            
-            // محور العمل والتبعية
-            if(document.getElementById('criteria1').value === 'تم التحقق') total += 10;
-            if(document.getElementById('criteria2').value === 'تم التحقق') total += 20;
-            if(document.getElementById('criteria3').value === 'تم التحقق') total += 15;
-            if(document.getElementById('criteria4').value === 'تم التحقق') total += 15;
-            if(document.getElementById('criteria5').value === 'تم التحقق') total += 10;
-            if(document.getElementById('criteria6').value === 'تم التحقق') total += 5;
-            if(document.getElementById('criteria7').value === 'تم التحقق') total += -30;
-            
-            // محور الأجر
-            if(document.getElementById('criteria8').value === 'تم التحقق') total += 20;
-            if(document.getElementById('criteria9').value === 'تم التحقق') total += 5;
-            
-            // رأي المفتش
-            if(document.getElementById('criteria10').value === 'تم التحقق') total += 5;
-            if(document.getElementById('criteria11').value === 'تم التحقق') total += 5;
-            if(document.getElementById('criteria12').value === 'تم التحقق') total += 5;
-            if(document.getElementById('criteria13').value === 'تم التحقق') total += 5;
-            
-            document.getElementById('total-score').textContent = total;
-            return total;
-        }
-        
-        // تحديث المجموع عند تغيير أي اختيار
-        document.querySelectorAll('select').forEach(select => {
-            select.addEventListener('change', calculateTotal);
-        });
-        
-        function generateExcel() {
-            // إنشاء كائن ورقة عمل
-            const wb = XLSX.utils.book_new();
-            const ws_data = [];
-            
-            // إضافة العناوين
-            ws_data.push(["جدول المعايير والأوزان الاسترشادية الموحد", "", "", "", "", "", "", ""]);
-            ws_data.push(["عناصر صحة علاقة العمل", "المعيار", "", "وزن المعيار", "رأي المفتش بشأن المعيار", "ملاحظات", "", "درجة المعيار"]);
-            ws_data.push(["", "", "", "", "تم التحقق / لم يتم التحقق", "", "", ""]);
-            ws_data.push(["", "", "", "", "", "", "", ""]);
-            ws_data.push(["", "", "", "", "", "", "", ""]);
-            ws_data.push(["", "", "", "", "", "", "", ""]);
-            ws_data.push(["", "", "", "", "", "", "", ""]);
-            
-            // محور العمل والتبعية
-            ws_data.push([
-                "العمل و التبعية",
-                "عقد العمل",
-                "",
-                "10",
-                document.getElementById('criteria1').value,
-                document.getElementById('notes1').value,
-                "",
-                document.getElementById('criteria1').value === 'تم التحقق' ? 10 : 0
-            ]);
-            
-            ws_data.push([
-                "",
-                "تسجيل المشترك/هـ كمسؤول أو مشرف في احد أنظمة الجهات الحكومية او في أحد المنصات الحكومية المعتمدة (مثل: منصة نور للمعلمين- مشرف المنشأه في التأمينات) / وكلات شرعية  /  حكم قضائي  مكتسب القطعية",
-                "",
-                "20",
-                document.getElementById('criteria2').value,
-                document.getElementById('notes2').value,
-                "",
-                document.getElementById('criteria2').value === 'تم التحقق' ? 20 : 0
-            ]);
-            
-            ws_data.push([
-                "",
-                "تأمين طبي سابق لتاريخ التفتيش (يتم التحقق من صحة التأمين عن طريق مجلس الضمان الصحي )",
-                "",
-                "15",
-                document.getElementById('criteria3').value,
-                document.getElementById('notes3').value,
-                "",
-                document.getElementById('criteria3').value === 'تم التحقق' ? 15 : 0
-            ]);
-            
-            ws_data.push([
-                "",
-                "التحقق من صحة علاقة العمل عن طريق سؤال المشترك محل البحث حول طبيعة العمل و نشاط المنشاة و موقع العمل أو التحقق من صحة علاقة العمل عن طريق سؤال بقية المشتركين عن المشترك محل البحث",
-                "",
-                "15",
-                document.getElementById('criteria4').value,
-                document.getElementById('notes4').value,
-                "",
-                document.getElementById('criteria4').value === 'تم التحقق' ? 15 : 0
-            ]);
-            
-            ws_data.push([
-                "",
-                "مستندات لبعض أعمال المشترك/هـ خاصة بالفترة المطلوبة (لابد أن تتوافق مع طبيعة عمل المنشأة ومؤهلات المشترك )",
-                "",
-                "10",
-                document.getElementById('criteria5').value,
-                document.getElementById('notes5').value,
-                "",
-                document.getElementById('criteria5').value === 'تم التحقق' ? 10 : 0
-            ]);
-            
-            ws_data.push([
-                "",
-                "القرارات الادارية تصدر للمشترك والقرارات الخارجية مثل (قرارات الترقية/قرارة الزيادة في الاجر / تقارير طبية بإجازة مرضيه /كشوف الحضور والانصراف  )",
-                "",
-                "5",
-                document.getElementById('criteria6').value,
-                document.getElementById('notes6').value,
-                "",
-                document.getElementById('criteria6').value === 'تم التحقق' ? 5 : 0
-            ]);
-            
-            ws_data.push([
-                "",
-                "إقرار المشترك بعدم العمل",
-                "",
-                "30",
-                document.getElementById('criteria7').value,
-                document.getElementById('notes7').value,
-                "",
-                document.getElementById('criteria7').value === 'تم التحقق' ? -30 : 0
-            ]);
-            
-            // محور الأجر
-            ws_data.push([
-                "الأجر",
-                "الأجر من خلال برنامج حماية الأجور ويشمل التحويلات البنكية",
-                "",
-                "20",
-                document.getElementById('criteria8').value,
-                document.getElementById('notes8').value,
-                "",
-                document.getElementById('criteria8').value === 'تم التحقق' ? 20 : 0
-            ]);
-            
-            ws_data.push([
-                "",
-                "مسيرات رواتب او سندات صرف  ( في حال عدم وجود حوالات بنكية)",
-                "",
-                "5",
-                document.getElementById('criteria9').value,
-                document.getElementById('notes9').value,
-                "",
-                document.getElementById('criteria9').value === 'تم التحقق' ? 5 : 0
-            ]);
-            
-            // رأي المفتش
-            ws_data.push([
-                "رأي المفتش",
-                "توافق المعلومات التي إطلع عليها المفتش",
-                "",
-                "5",
-                document.getElementById('criteria10').value,
-                document.getElementById('notes10').value,
-                "",
-                document.getElementById('criteria10').value === 'تم التحقق' ? 5 : 0
-            ]);
-            
-            ws_data.push([
-                "",
-                "تواجد المشترك/ة",
-                "",
-                "5",
-                document.getElementById('criteria11').value,
-                document.getElementById('notes11').value,
-                "",
-                document.getElementById('criteria11').value === 'تم التحقق' ? 5 : 0
-            ]);
-            
-            ws_data.push([
-                "",
-                "العلاقة الشخصية بين المشترك وصاحب العمل",
-                "",
-                "5",
-                document.getElementById('criteria12').value,
-                document.getElementById('notes12').value,
-                "",
-                document.getElementById('criteria12').value === 'تم التحقق' ? 5 : 0
-            ]);
-            
-            ws_data.push([
-                "",
-                "موثوقية المستندات",
-                "",
-                "5",
-                document.getElementById('criteria13').value,
-                document.getElementById('notes13').value,
-                "",
-                document.getElementById('criteria13').value === 'تم التحقق' ? 5 : 0
-            ]);
-            
-            ws_data.push(["يتم اعتبار علاقة العمل صحيحة  (40 درجة) فأكثر بشرط توفر عنصر بكل محور من المحاور الثلاثة", "", "", "", "", "", "", ""]);
-            
-            // معلومات المنشأة والعامل
-            ws_data.push(["رقم السجل التجاري", "", "", "رقم المنشأة", "", "", "", ""]);
-            ws_data.push([
-                document.getElementById('commercial-registry').value,
-                "",
-                "",
-                document.getElementById('establishment-number').value,
-                "",
-                "",
-                "",
-                ""
-            ]);
-            
-            ws_data.push(["رقم هوية العامل", "", "", "اسم العامل", "", "", "", ""]);
-            ws_data.push([
-                document.getElementById('worker-id').value,
-                "",
-                "",
-                document.getElementById('worker-name').value,
-                "",
-                "",
-                "",
-                ""
-            ]);
-            
-            // المجموع
-            ws_data.push(["المجموع", "", "", "", "", "", calculateTotal(), ""]);
-            
-            // تحويل البيانات إلى ورقة عمل
-            const ws = XLSX.utils.aoa_to_sheet(ws_data);
-            
-            // إضافة ورقة العمل إلى كائن المصنف
-            XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-            
-            // توليد ملف Excel وتنزيله
-            XLSX.writeFile(wb, "نموذج_التفتيش.xlsx");
-        }
-    </script>
-</body>
-</html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { direction: rtl; }
+  .notebook {
+    background: #fdf9f0;
+    background-image: repeating-linear-gradient(
+      transparent, transparent 31px, #c8daf0 31px, #c8daf0 32px
+    );
+    min-height: 1200px;
+    padding: 20px 30px 40px 30px;
+    font-family: 'Noto Naskh Arabic', serif;
+    direction: rtl;
+    position: relative;
+    border-right: 3px solid #e8a0a0;
+  }
+  .margin-line {
+    position: absolute;
+    right: 60px;
+    top: 0;
+    bottom: 0;
+    width: 1.5px;
+    background: #e8a0a0;
+    opacity: 0.5;
+  }
+  .page-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #c0392b;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    font-family: 'Noto Naskh Arabic', serif;
+    text-decoration: underline wavy #c0392b;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 14px;
+    font-family: 'Noto Naskh Arabic', serif;
+  }
+  .exam-tip {
+    background: #fff9e6;
+    border: 2px dashed #e6b800;
+    border-radius: 10px;
+    padding: 8px 14px;
+    margin: 10px 0 14px 0;
+    font-size: 13px;
+    color: #7a5c00;
+    font-family: 'Noto Naskh Arabic', serif;
+    display: inline-block;
+    transform: rotate(-0.5deg);
+  }
+  .exam-tip span { font-weight: 700; color: #c0392b; }
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #c0392b;
+    border-bottom: 2.5px solid #c0392b;
+    padding-bottom: 3px;
+    margin: 18px 0 8px 0;
+    font-family: 'Noto Naskh Arabic', serif;
+    display: inline-block;
+    transform: rotate(-0.3deg);
+  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 10px; }
+  .word-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 13.5px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .word-table thead tr { background: #e8f0fe; }
+  .word-table th {
+    padding: 6px 10px;
+    color: #1a237e;
+    font-size: 13px;
+    font-weight: 700;
+    border-bottom: 2px solid #90caf9;
+    text-align: center;
+  }
+  .word-table td {
+    padding: 5px 10px;
+    border-bottom: 1px dashed #b0c4de;
+    text-align: center;
+    color: #1a3a6b;
+    line-height: 1.6;
+  }
+  .word-table td:first-child {
+    font-weight: 700;
+    color: #c0392b;
+    background: rgba(255,235,235,0.3);
+  }
+  .highlight-yellow {
+    background: #fff176;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-weight: 700;
+  }
+  .antonym-table thead tr { background: #e8f5e9; }
+  .antonym-table th { color: #1b5e20; border-bottom: 2px solid #81c784; }
+  .antonym-table td { color: #1b4020; }
+  .antonym-table td:first-child { color: #1565c0; background: rgba(225,245,255,0.3); }
+  .both-table thead tr { background: #fce4ec; }
+  .both-table th { color: #880e4f; border-bottom: 2px solid #f48fb1; }
+  .both-table td:first-child { color: #c0392b; background: rgba(255,235,235,0.3); }
+  .both-table td:nth-child(2) { color: #1a5276; }
+  .both-table td:nth-child(3) { color: #1b5e20; }
+  .note-bubble {
+    background: #fff3cd;
+    border: 1.5px solid #ffc107;
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: #7a5c00;
+    display: inline-block;
+    margin: 6px 0;
+    font-family: 'Noto Naskh Arabic', serif;
+    transform: rotate(0.5deg);
+  }
+  .common-mistake {
+    background: #fce4ec;
+    border: 1.5px dashed #e91e63;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 12.5px;
+    color: #880e4f;
+    margin: 8px 0;
+    font-family: 'Noto Naskh Arabic', serif;
+  }
+  .common-mistake span { font-weight: 700; }
+  .margin-doodle {
+    position: absolute;
+    right: 4px;
+    font-size: 18px;
+    color: #c0392b;
+    opacity: 0.5;
+    writing-mode: vertical-rl;
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+  .star { color: #f39c12; font-size: 16px; }
+  .arrow-note {
+    font-size: 12px;
+    color: #1a5276;
+    margin: 4px 0 10px 0;
+    padding-right: 8px;
+    font-family: 'Noto Naskh Arabic', serif;
+  }
+  .page-num {
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+    font-family: 'Noto Naskh Arabic', serif;
+  }
+  .divider {
+    border: none;
+    border-top: 2px dotted #bbb;
+    margin: 14px 0;
+  }
+  .circle-important {
+    display: inline-block;
+    border: 2.5px solid #c0392b;
+    border-radius: 50%;
+    padding: 2px 7px;
+    color: #c0392b;
+    font-weight: 700;
+    margin: 0 2px;
+  }
+  .underline-blue {
+    border-bottom: 2px solid #1a5276;
+    color: #1a5276;
+  }
+</style>
+
+<div class="notebook" style="direction:rtl; position:relative;">
+  <div class="margin-line"></div>
+
+  <div class="page-title">✏️ المفردات اللفظية — مترادفات ومتضادات</div>
+  <div class="subtitle">ملاحظات المراجعة — لغة عربية</div>
+
+  <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:8px;">
+    <div class="exam-tip"><span>★ نصيحة امتحان:</span> احفظ الكلمة مع مرادفها ومضادها معاً في جملة واحدة!</div>
+    <div class="note-bubble">⚠ الكلمة الواحدة قد يكون لها أكثر من مرادف</div>
+  </div>
+
+  <!-- SECTION 1: المترادفات -->
+  <div class="section-title">📘 أولاً: أهم المترادفات</div>
+  <div class="arrow-note">← الكلمة في اليمين، معناها في الشمال</div>
+
+  <div class="two-col">
+    <table class="word-table">
+      <thead><tr><th>الكلمة</th><th>مرادفها</th></tr></thead>
+      <tbody>
+        <tr><td>أنفال</td><td class="highlight-yellow">غنائم</td></tr>
+        <tr><td>جدير</td><td>حرىً / حقيق</td></tr>
+        <tr><td>أوبة</td><td>عودة</td></tr>
+        <tr><td>أجمم</td><td>امتنع / تراجع</td></tr>
+        <tr><td>استحوذ</td><td>استولى</td></tr>
+        <tr><td>البالي</td><td>العتيق</td></tr>
+        <tr><td>باسقات</td><td>طويلات / عاليات</td></tr>
+        <tr><td>برهن</td><td>أثبت / دلل</td></tr>
+        <tr><td>بجيس</td><td>ماء سائل</td></tr>
+        <tr><td>تليد</td><td>قديم وعريق</td></tr>
+        <tr><td>تهوين</td><td>تسهيل</td></tr>
+        <tr><td>تثريب</td><td>توبيخ</td></tr>
+        <tr><td>تأهب</td><td>استعد / تجهز</td></tr>
+      </tbody>
+    </table>
+    <table class="word-table">
+      <thead><tr><th>الكلمة</th><th>مرادفها</th></tr></thead>
+      <tbody>
+        <tr><td>الجود</td><td class="highlight-yellow">السخاء / الكرم</td></tr>
+        <tr><td>حبط</td><td>فسد وبطل</td></tr>
+        <tr><td>حيف</td><td>ميل / ظلم</td></tr>
+        <tr><td>حلكة</td><td>سواد</td></tr>
+        <tr><td>داهية</td><td>مصيبة</td></tr>
+        <tr><td>دماثة</td><td>لطافة</td></tr>
+        <tr><td>ركون</td><td>اعتماد</td></tr>
+        <tr><td>ريبة</td><td>شك</td></tr>
+        <tr><td>رام</td><td>طلب</td></tr>
+        <tr><td>رث</td><td>بالي / قديم</td></tr>
+        <tr><td>زعزع</td><td>هز</td></tr>
+        <tr><td>قنوط</td><td>يأس</td></tr>
+        <tr><td>زنيم</td><td>لئيم / شرير</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col" style="margin-top:4px;">
+    <table class="word-table">
+      <thead><tr><th>الكلمة</th><th>مرادفها</th></tr></thead>
+      <tbody>
+        <tr><td>ساد</td><td class="highlight-yellow">حكم / ملك</td></tr>
+        <tr><td>سليط</td><td>بذيء اللسان</td></tr>
+        <tr><td>توقيع</td><td>تذييل</td></tr>
+        <tr><td>شيص</td><td>رديء</td></tr>
+        <tr><td>ضرم</td><td>جائع</td></tr>
+        <tr><td>بشم</td><td>شبع / شبعان</td></tr>
+        <tr><td>عقوق</td><td>الحامل</td></tr>
+        <tr><td>غيض</td><td>قليل / قله</td></tr>
+        <tr><td>فاقة</td><td>حاجة / عوز</td></tr>
+        <tr><td>فلوات</td><td>صحاري</td></tr>
+        <tr><td>قسر</td><td>اكراه</td></tr>
+        <tr><td>قشيب</td><td>جديد</td></tr>
+        <tr><td>خائب</td><td>فاشل</td></tr>
+      </tbody>
+    </table>
+    <table class="word-table">
+      <thead><tr><th>الكلمة</th><th>مرادفها</th></tr></thead>
+      <tbody>
+        <tr><td>كظم</td><td class="highlight-yellow">كتم</td></tr>
+        <tr><td>كبوة</td><td>سقطة / هفوة</td></tr>
+        <tr><td>لبيب</td><td>ذكي / فطن</td></tr>
+        <tr><td>وئام</td><td>وفاق</td></tr>
+        <tr><td>مقت</td><td>كره</td></tr>
+        <tr><td>مكين</td><td>ثابت / راسخ</td></tr>
+        <tr><td>مناقشة</td><td>مجادلة</td></tr>
+        <tr><td>ندم</td><td>اسف / تحسر</td></tr>
+        <tr><td>اكتساح</td><td>اجتياح</td></tr>
+        <tr><td>نوال</td><td>عطاء</td></tr>
+        <tr><td>النزق</td><td>الطيش</td></tr>
+        <tr><td>جنين</td><td>مولود</td></tr>
+        <tr><td>مثالب</td><td>مسبة / عيوب</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="common-mistake"><span>⚡ خطأ شائع:</span> "رث" ≠ وسخ — معناها <span class="highlight-yellow">بالي / قديم</span> وليس نجس!</div>
+
+  <div class="two-col" style="margin-top:4px;">
+    <table class="word-table">
+      <thead><tr><th>الكلمة</th><th>مرادفها</th></tr></thead>
+      <tbody>
+        <tr><td>وسن</td><td class="highlight-yellow">نعاس / غفلة</td></tr>
+        <tr><td>سنة</td><td>نعاس / غفوة</td></tr>
+        <tr><td>يؤول</td><td>يرجع</td></tr>
+        <tr><td>يمحق</td><td>يبطل / يهلك</td></tr>
+        <tr><td>ضنين</td><td>بخيل</td></tr>
+        <tr><td>أجزل</td><td>أكثر وزاد</td></tr>
+        <tr><td>رفق</td><td>لين</td></tr>
+        <tr><td>زخر</td><td>امتلأ / افتخر</td></tr>
+        <tr><td>سقف</td><td>غطاء</td></tr>
+        <tr><td>رابية</td><td>مرتفعة</td></tr>
+        <tr><td>مغرفة</td><td>ملعقة</td></tr>
+        <tr><td>عويل</td><td>بكاء / أنين</td></tr>
+        <tr><td>رصين</td><td>محكم / حكيم</td></tr>
+      </tbody>
+    </table>
+    <table class="word-table">
+      <thead><tr><th>الكلمة</th><th>مرادفها</th></tr></thead>
+      <tbody>
+        <tr><td>سرائر</td><td class="highlight-yellow">ضمائر</td></tr>
+        <tr><td>عصابة</td><td>عمامة</td></tr>
+        <tr><td>لكمة</td><td>ضربة</td></tr>
+        <tr><td>حرّز</td><td>أمّن</td></tr>
+        <tr><td>جرّد</td><td>أبان</td></tr>
+        <tr><td>ولّد</td><td>أنتج</td></tr>
+        <tr><td>يتفيّأ</td><td>يتظلل</td></tr>
+        <tr><td>وجوم</td><td>سكوت</td></tr>
+        <tr><td>رعدة</td><td>رعشة / هزة</td></tr>
+        <tr><td>رمز</td><td>علامة / أمارة</td></tr>
+        <tr><td>نادر</td><td>قليل مثله</td></tr>
+        <tr><td>تزيين</td><td>تجميل / تحسين</td></tr>
+        <tr><td>حصري</td><td>خاص</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col" style="margin-top:4px;">
+    <table class="word-table">
+      <thead><tr><th>الكلمة</th><th>مرادفها</th></tr></thead>
+      <tbody>
+        <tr><td>سهاد</td><td class="highlight-yellow">رقاد</td></tr>
+        <tr><td>جذب</td><td>شد</td></tr>
+        <tr><td>التؤدة</td><td>الرزانة / التمهل</td></tr>
+        <tr><td>عضده</td><td>دعمه</td></tr>
+        <tr><td>قبس</td><td>شعلة</td></tr>
+        <tr><td>توخي</td><td>تحري</td></tr>
+        <tr><td>جسور</td><td>شجاع</td></tr>
+        <tr><td>حبور</td><td>سرور</td></tr>
+        <tr><td>الوهن</td><td>الضعف</td></tr>
+        <tr><td>عصر</td><td>ضغط</td></tr>
+        <tr><td>راود</td><td>استمال</td></tr>
+        <tr><td>نبيه</td><td>حاذق</td></tr>
+      </tbody>
+    </table>
+    <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; gap:10px;">
+      <div class="exam-tip" style="transform:rotate(1deg); font-size:12px;">
+        <span>★ تلميح للحفظ:</span><br>
+        وسن = سنة = نعاس<br>
+        (كلاهما للنوم الخفيف!)
+      </div>
+      <div class="note-bubble" style="transform:rotate(-1deg);">
+        🖊 سرائر = ضمائر<br>(ج. سريرة = ما يُخفى)
+      </div>
+      <div class="common-mistake" style="font-size:12px;">
+        <span>⚡ انتبه:</span> "حبور" = سرور<br>وليس "حبر" = حيوان بحري!
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 2: المتضادات -->
+  <div class="section-title">📗 ثانياً: أهم المتضادات</div>
+  <div class="arrow-note">← الكلمة ← ضدها (الاتجاه المعاكس!)</div>
+
+  <div class="two-col">
+    <table class="word-table antonym-table">
+      <thead><tr><th>الكلمة</th><th>ضدها</th></tr></thead>
+      <tbody>
+        <tr><td>أغزر</td><td class="highlight-yellow">قلل</td></tr>
+        <tr><td>التنظير</td><td>التطبيق</td></tr>
+        <tr><td>احتدم</td><td>هدأ وبرد</td></tr>
+        <tr><td>إقرار</td><td>إنكار</td></tr>
+        <tr><td>إملاق</td><td>ثراء / غنى</td></tr>
+        <tr><td>استقبال</td><td>استبعاد</td></tr>
+        <tr><td>تألق</td><td>خفت</td></tr>
+        <tr><td>الإقدام</td><td>التردد</td></tr>
+        <tr><td>استعداد</td><td>تراخي / تقاعس</td></tr>
+        <tr><td>ارتياب</td><td>يقين</td></tr>
+        <tr><td>تألق</td><td>خفت</td></tr>
+        <tr><td>تثبيط</td><td>تحفيز / تأجيج</td></tr>
+        <tr><td>تثبيت</td><td>تحريك</td></tr>
+      </tbody>
+    </table>
+    <table class="word-table antonym-table">
+      <thead><tr><th>الكلمة</th><th>ضدها</th></tr></thead>
+      <tbody>
+        <tr><td>رهبة</td><td class="highlight-yellow">أمن</td></tr>
+        <tr><td>ارتياب</td><td>يقين</td></tr>
+        <tr><td>شريف</td><td>وضيع / حقير</td></tr>
+        <tr><td>شرف</td><td>وضاعة</td></tr>
+        <tr><td>قط</td><td>خصوبة</td></tr>
+        <tr><td>خدن</td><td>عدو</td></tr>
+        <tr><td>ساطع</td><td>خافت</td></tr>
+        <tr><td>سخت</td><td>حلال</td></tr>
+        <tr><td>سخط</td><td>رضى</td></tr>
+        <tr><td>شائق</td><td>ممل / منفر</td></tr>
+        <tr><td>شحيح</td><td>سخي / كريم</td></tr>
+        <tr><td>صخب</td><td>هدوء / صمت</td></tr>
+        <tr><td>ظهير</td><td>منافس</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col" style="margin-top:4px;">
+    <table class="word-table antonym-table">
+      <thead><tr><th>الكلمة</th><th>ضدها</th></tr></thead>
+      <tbody>
+        <tr><td>قصور</td><td class="highlight-yellow">إجادة / اهتمام</td></tr>
+        <tr><td>كسد</td><td>راج</td></tr>
+        <tr><td>مزدوج</td><td>مفرد</td></tr>
+        <tr><td>متوان</td><td>همام / نشيط</td></tr>
+        <tr><td>مغوار</td><td>خوار</td></tr>
+        <tr><td>وثير</td><td>خشن / قاسي</td></tr>
+        <tr><td>وسخ</td><td>نظيف</td></tr>
+        <tr><td>وصب</td><td>راحة</td></tr>
+        <tr><td>يتسامى</td><td>ينحدر</td></tr>
+      </tbody>
+    </table>
+    <table class="word-table antonym-table">
+      <thead><tr><th>الكلمة</th><th>ضدها</th></tr></thead>
+      <tbody>
+        <tr><td>غلظة</td><td class="highlight-yellow">لين</td></tr>
+        <tr><td>هرم</td><td>يافع</td></tr>
+        <tr><td>أكن</td><td>أعلن</td></tr>
+        <tr><td>ملوحة</td><td>عذوبة</td></tr>
+        <tr><td>ملاحة</td><td>قبح / دمامة</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 3: كلمات ومرادفها وضدها -->
+  <div class="section-title">📙 ثالثاً: كلمات — مرادفها — ضدها</div>
+
+  <div class="exam-tip" style="transform:rotate(-0.3deg); margin-bottom:10px;">
+    <span>★ هذا القسم مهم جداً للامتحان!</span> قد يُسألك عن المرادف أو الضد في نفس السؤال
+  </div>
+
+  <table class="word-table both-table" style="margin-bottom:10px;">
+    <thead><tr><th>الكلمة</th><th>مرادفها</th><th>ضدها</th></tr></thead>
+    <tbody>
+      <tr><td class="highlight-yellow">إغلال</td><td>تقييد</td><td>تحرير</td></tr>
+      <tr><td>أعار</td><td>أعطى</td><td>أخذ</td></tr>
+      <tr><td>ألغز</td><td>أخفى / أبهم</td><td>أظهر</td></tr>
+      <tr><td>أنفة</td><td>العزة / الإباء</td><td>الذل</td></tr>
+      <tr><td>بجبوحة</td><td>رغد العيش</td><td>كدر العيش</td></tr>
+      <tr><td>جرّد</td><td>أبان / كشف</td><td>ستر / غطى</td></tr>
+      <tr><td>امتعاض</td><td>استياء</td><td>ارتياح</td></tr>
+      <tr><td>شجن</td><td>ألم</td><td>فرح</td></tr>
+      <tr><td>صلد</td><td>صلب</td><td>لين</td></tr>
+      <tr><td>قاصر</td><td>ناقص / صغير</td><td>بالغ / راشد</td></tr>
+      <tr><td>قنوط</td><td>يأس</td><td>أمل</td></tr>
+      <tr><td class="highlight-yellow">سميك</td><td>ثخين</td><td>نحيف ، دقيق</td></tr>
+    </tbody>
+  </table>
+
+  <table class="word-table both-table">
+    <thead><tr><th>الكلمة</th><th>مرادفها</th><th>ضدها</th></tr></thead>
+    <tbody>
+      <tr><td>بخس</td><td>قليل / زهيد</td><td class="highlight-yellow">كثير</td></tr>
+      <tr><td>تبجيل</td><td>توقير / احترام</td><td>تحقير</td></tr>
+      <tr><td>تبديد</td><td>تشتيت / تفريق</td><td>ادخار / توفير</td></tr>
+      <tr><td>توارى</td><td>أفل / اختفى</td><td>ظهر</td></tr>
+      <tr><td>التأليب</td><td>التحريض</td><td>التهدئة</td></tr>
+      <tr><td>حصيف</td><td>ثاقب</td><td>غني</td></tr>
+      <tr><td>غاشم</td><td>ظالم متعسف</td><td>عادل / منصف</td></tr>
+      <tr><td>لمم</td><td>صغيرة</td><td>كبيرة</td></tr>
+      <tr><td>محض</td><td>خالص / نقي</td><td>مختلط / معكر</td></tr>
+      <tr><td>الموضوعية</td><td>الحيادية</td><td>الذاتية</td></tr>
+      <tr><td>نكص</td><td>تراجع</td><td>أقدم / تقدم</td></tr>
+      <tr><td>ناجع</td><td>نافع</td><td>ضار</td></tr>
+      <tr><td class="highlight-yellow">الندى</td><td>الكرم</td><td>البخل</td></tr>
+    </tbody>
+  </table>
+
+  <table class="word-table both-table" style="margin-top:8px;">
+    <thead><tr><th>الكلمة</th><th>مرادفها</th><th>ضدها</th></tr></thead>
+    <tbody>
+      <tr><td class="highlight-yellow">جلبة</td><td>ضجيج / صخب</td><td>هدوء / صمت</td></tr>
+      <tr><td>ذعر</td><td>خوف / فزع</td><td>أمن / طمأنينة</td></tr>
+      <tr><td>عابس</td><td>مقطّب</td><td>مبتسم / بشوش</td></tr>
+      <tr><td>قيء</td><td>قبيح</td><td>جميل</td></tr>
+      <tr><td>وصب</td><td>تعب</td><td>راحة</td></tr>
+      <tr><td>وخيمة</td><td>جسيمة ، فادحة</td><td>بسيطة</td></tr>
+      <tr><td>يفنّد</td><td>يخطئ أو يبطل</td><td>يؤكد</td></tr>
+      <tr><td>مذعن</td><td>مستسلم ، منقاد</td><td>متمرد</td></tr>
+      <tr><td>كبح</td><td>أوقف / ألجم</td><td>أطلق / حرر</td></tr>
+      <tr><td>مثالب</td><td>عيوب</td><td>محاسن</td></tr>
+      <tr><td class="highlight-yellow">غرة</td><td>بداية الشهر</td><td>نهاية الشهر</td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+    <div class="exam-tip" style="transform:rotate(0.4deg);">
+      <span>★ نصيحة امتحان:</span> كلمة "غرة" تعني بداية الشهر — احفظها جيداً!
+    </div>
+    <div class="common-mistake">
+      <span>⚡ خطأ شائع:</span> "مذعن" ≠ خائف — بل تعني <span class="highlight-yellow">مستسلم / منقاد</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 14px; padding: 10px; background: rgba(200,220,255,0.25); border-radius: 10px; border: 1.5px dashed #4a7dc8;">
+    <div style="font-size:13px; color:#1a3a6b; font-family:'Noto Naskh Arabic',serif; font-weight:700; margin-bottom:4px;">📌 ملخص سريع — كلمات مهمة جداً:</div>
+    <div style="font-size:12.5px; color:#1a3a6b; font-family:'Noto Naskh Arabic',serif; line-height:2;">
+      <span class="circle-important">أنفال</span> = غنائم &nbsp;|&nbsp;
+      <span class="circle-important">وسن</span> = نعاس &nbsp;|&nbsp;
+      <span class="circle-important">باسقات</span> = طويلات &nbsp;|&nbsp;
+      <span class="circle-important">قنوط</span> = يأس ≠ أمل &nbsp;|&nbsp;
+      <span class="circle-important">تثريب</span> = توبيخ<br>
+      <span class="circle-important">إملاق</span> ≠ ثراء &nbsp;|&nbsp;
+      <span class="circle-important">الندى</span> = الكرم ≠ البخل &nbsp;|&nbsp;
+      <span class="circle-important">غرة</span> = بداية الشهر &nbsp;|&nbsp;
+      <span class="circle-important">مثالب</span> = عيوب ≠ محاسن
+    </div>
+  </div>
+
+  <div class="page-num">— ✏️ بالتوفيق في الامتحان ✏️ —</div>
+</div>
